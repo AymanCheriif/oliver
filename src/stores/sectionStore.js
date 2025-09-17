@@ -6,7 +6,7 @@ const appVersion = import.meta.env.VITE_APP_VERSION || "dev";
 export const useSectionsStore = defineStore("sections", {
   state: () => ({
     activated: {
-      auth: false,
+      auth: true, // Auth is always activated
       dashboard: false,
       profile: false,
       discover: false,
@@ -38,7 +38,7 @@ export const useSectionsStore = defineStore("sections", {
     },
     reset() {
       this.activated = {
-        auth: false,
+        auth: true,
         dashboard: false,
         profile: false,
         discover: false,
@@ -80,7 +80,9 @@ export const useSectionsStore = defineStore("sections", {
         return;
       }
       if (this.activating[section]) {
-        console.log(`[ACTIVATE] Waiting for ongoing activation of "${section}"`);
+        console.log(
+          `[ACTIVATE] Waiting for ongoing activation of "${section}"`
+        );
         await this.activating[section];
         return;
       }
