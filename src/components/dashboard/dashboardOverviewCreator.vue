@@ -1,38 +1,50 @@
 <template>
   <div>
-    <template v-if="i18nReady">
-      <h1>{{ pageTitle }}</h1>
-      <p>{{ welcomeMessage }}</p>
-      <button @click="logout" :aria-label="logoutLabel">
-        {{ logoutLabel }}
+    <template v-if="i18nRuntimeState.ready">
+      <h1>{{ $t("dashboard.page.title") }}</h1>
+      <p>
+        {{
+          $t("dashboard.messages.welcome", [authStore.currentUser?.email || ""])
+        }}
+      </p>
+      <button @click="logout" :aria-label="t('auth.common.logout', 'Logout')">
+        {{ $t("auth.common.logout", "Logout") }}
       </button>
 
       <nav style="margin-top: 1rem; display: flex; gap: 1rem">
         <router-link to="/dashboard/edit-profile">
-          <button class="dash-btn" :aria-label="editProfileLabel">
-            {{ editProfileLabel }}
+          <button
+            class="dash-btn"
+            :aria-label="t('dashboard.actions.editProfile', 'Edit Profile')"
+          >
+            {{ $t("dashboard.actions.editProfile", "Edit Profile") }}
           </button>
         </router-link>
         <router-link to="/dashboard/edit-settings">
-          <button class="dash-btn" :aria-label="editSettingsLabel">
-            {{ editSettingsLabel }}
+          <button
+            class="dash-btn"
+            :aria-label="t('dashboard.actions.editSettings', 'Edit Settings')"
+          >
+            {{ $t("dashboard.actions.editSettings", "Edit Settings") }}
           </button>
         </router-link>
         <router-link to="/dashboard/my-media">
-          <button class="dash-btn" :aria-label="myMediaLabel">
-            {{ myMediaLabel }}
+          <button
+            class="dash-btn"
+            :aria-label="t('dashboard.actions.myMedia', 'My Media')"
+          >
+            {{ $t("dashboard.actions.myMedia", "My Media") }}
           </button>
         </router-link>
       </nav>
     </template>
     <template v-else>
-      <p>{{ loadingText }}</p>
+      <p>{{ $t("common.loading") }}</p>
     </template>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
@@ -41,22 +53,6 @@ import { i18nRuntimeState } from "@/main";
 const authStore = useAuthStore();
 const router = useRouter();
 const { t } = useI18n();
-
-const i18nReady = computed(() => i18nRuntimeState.ready);
-
-const pageTitle = computed(() => t("dashboard.page.title"));
-const welcomeMessage = computed(() =>
-  t("dashboard.messages.welcome", [authStore.currentUser?.email || ""])
-);
-const logoutLabel = computed(() => t("auth.common.logout", "Logout"));
-const editProfileLabel = computed(() =>
-  t("dashboard.actions.editProfile", "Edit Profile")
-);
-const editSettingsLabel = computed(() =>
-  t("dashboard.actions.editSettings", "Edit Settings")
-);
-const myMediaLabel = computed(() => t("dashboard.actions.myMedia", "My Media"));
-const loadingText = computed(() => t("common.loading"));
 
 function logout() {
   authStore.logout();

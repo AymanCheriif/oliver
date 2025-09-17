@@ -1,17 +1,24 @@
 <template>
   <div>
-    <h1>Confirm Email</h1>
+    <h1>{{ $t("auth.confirmEmail.title") }}</h1>
     <form @submit.prevent="handleConfirm">
-      <input v-model="email" type="email" placeholder="Email" required />
+      <input
+        v-model="email"
+        type="email"
+        :placeholder="$t('auth.confirmEmail.emailPlaceholder')"
+        :aria-label="$t('auth.confirmEmail.emailPlaceholder')"
+        required
+      />
       <input
         v-model="code"
         type="text"
-        placeholder="Confirmation Code"
+        :placeholder="$t('auth.confirmEmail.codePlaceholder')"
+        :aria-label="$t('auth.confirmEmail.codePlaceholder')"
         required
       />
-      <button type="submit">Confirm</button>
+      <button type="submit">{{ $t("auth.confirmEmail.button") }}</button>
     </form>
-    <p v-if="error">{{ error }}</p>
+    <p v-if="error">{{ $t(error) }}</p>
   </div>
 </template>
 

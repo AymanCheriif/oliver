@@ -5,16 +5,6 @@ import { i18nRuntimeState } from "@/main";
 
 const { t } = useI18n();
 const i18nReady = computed(() => i18nRuntimeState.ready);
-const settingsTitle = computed(() =>
-  t("dashboard.sections.editSettings.title", "Account Settings")
-);
-const settingsDescription = computed(() =>
-  t(
-    "dashboard.sections.editSettings.description",
-    "Manage your account preferences"
-  )
-);
-const loadingText = computed(() => t("common.loading", "Loading..."));
 </script>
 
 <script>
@@ -28,8 +18,21 @@ export const assets = {
 <template>
   <section class="dashboard-overview-creator">
     <template v-if="i18nReady">
-      <h2 :aria-label="settingsTitle">{{ settingsTitle }}</h2>
-      <p>{{ settingsDescription }}</p>
+      <h2
+        :aria-label="
+          $t('dashboard.sections.editSettings.title', 'Account Settings')
+        "
+      >
+        {{ $t("dashboard.sections.editSettings.title", "Account Settings") }}
+      </h2>
+      <p>
+        {{
+          $t(
+            "dashboard.sections.editSettings.description",
+            "Manage your account preferences"
+          )
+        }}
+      </p>
       <!-- <img
         src="/images/above-the-fold-hero.jpg"
         alt="Hero Image"
@@ -37,7 +40,7 @@ export const assets = {
       /> -->
     </template>
     <template v-else>
-      <p>{{ loadingText }}</p>
+      <p>{{ $t("common.loading", "Loading...") }}</p>
     </template>
   </section>
 </template>

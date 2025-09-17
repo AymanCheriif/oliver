@@ -1,46 +1,50 @@
 <template>
   <div>
     <template v-if="i18nReady">
-      <h1>{{ registerTitle }}</h1>
+      <h1>{{ $t("auth.register.title") }}</h1>
       <form @submit.prevent="handleSignUp" novalidate>
         <input
           v-model="name"
           type="text"
-          :placeholder="firstNamePlaceholder"
-          :aria-label="firstNamePlaceholder"
+          :placeholder="$t('auth.register.firstName')"
+          :aria-label="$t('auth.register.firstName')"
           autocomplete="given-name"
           required
         />
         <input
           v-model="email"
           type="email"
-          :placeholder="emailPlaceholder"
-          :aria-label="emailPlaceholder"
+          :placeholder="$t('auth.register.emailPlaceholder')"
+          :aria-label="$t('auth.register.emailPlaceholder')"
           autocomplete="email"
           required
         />
         <input
           v-model="password"
           type="password"
-          :placeholder="passwordPlaceholder"
-          :aria-label="passwordPlaceholder"
+          :placeholder="$t('auth.register.passwordPlaceholder')"
+          :aria-label="$t('auth.register.passwordPlaceholder')"
           autocomplete="new-password"
           required
         />
-        <select v-model="role" :aria-label="roleLabel" required>
-          <option value="creator">{{ userRole }}</option>
-          <option value="vendor">{{ adminRole }}</option>
-          <option value="customer">{{ guestRole }}</option>
-          <option value="agent">{{ userRole }}</option>
+        <select
+          v-model="role"
+          :aria-label="$t('auth.register.roleLabel', 'Role')"
+          required
+        >
+          <option value="creator">{{ $t("auth.common.user") }}</option>
+          <option value="vendor">{{ $t("auth.common.admin") }}</option>
+          <option value="customer">{{ $t("auth.common.guest") }}</option>
+          <option value="agent">{{ $t("auth.common.user") }}</option>
         </select>
         <button type="submit" :disabled="isLoading">
-          {{ isLoading ? loadingText : registerButton }}
+          {{ isLoading ? $t("common.loading") : $t("auth.register.button") }}
         </button>
       </form>
-      <p v-if="errorKey" class="error">{{ t(errorKey) }}</p>
+      <p v-if="errorKey" class="error">{{ $t(errorKey) }}</p>
     </template>
     <template v-else>
-      <p>{{ loadingText }}</p>
+      <p>{{ $t("common.loading") }}</p>
     </template>
   </div>
 </template>
@@ -63,22 +67,7 @@ const router = useRouter();
 const authStore = useAuthStore();
 const { t } = useI18n();
 
-// i18n readiness
 const i18nReady = computed(() => i18nRuntimeState.ready);
-
-// Computed translation bindings
-const registerTitle = computed(() => t("auth.register.title"));
-const firstNamePlaceholder = computed(() => t("auth.register.firstName"));
-const emailPlaceholder = computed(() => t("auth.register.emailPlaceholder"));
-const passwordPlaceholder = computed(() =>
-  t("auth.register.passwordPlaceholder")
-);
-const registerButton = computed(() => t("auth.register.button"));
-const userRole = computed(() => t("auth.common.user"));
-const adminRole = computed(() => t("auth.common.admin"));
-const guestRole = computed(() => t("auth.common.guest"));
-const loadingText = computed(() => t("common.loading"));
-const roleLabel = computed(() => t("auth.register.roleLabel", "Role"));
 
 async function handleSignUp() {
   try {

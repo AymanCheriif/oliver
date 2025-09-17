@@ -1,8 +1,14 @@
 <template>
   <div>
-    <h1 data-translate="auth.register.KYC.title">{{ $t('auth.register.KYC.title') }}</h1>
-    <p data-translate="auth.register.KYC.description">{{ $t('auth.register.KYC.description') }}</p>
-    <button @click="completeKyc" data-translate="auth.register.KYC.button">{{ isLoading ? $t('auth.common.loading') : $t('auth.register.KYC.button') }}</button>
+    <h1 data-translate="auth.register.KYC.title">
+      {{ $t("auth.register.KYC.title") }}
+    </h1>
+    <p data-translate="auth.register.KYC.description">
+      {{ $t("auth.register.KYC.description") }}
+    </p>
+    <button @click="completeKyc" data-translate="auth.register.KYC.button">
+      {{ isLoading ? $t("common.loading") : $t("auth.register.KYC.button") }}
+    </button>
     <p v-if="error" data-translate="auth.register.KYC.error">{{ error }}</p>
   </div>
 </template>
@@ -37,13 +43,17 @@ async function completeKyc() {
     // --- Update Cognito ---
     await authHandler.updateProfileAttributes({ "custom:kyc": "true" });
     const mid = performance.now();
-    console.log(`[KYC] updateProfileAttributes took ${(mid - start).toFixed(2)} ms`);
+    console.log(
+      `[KYC] updateProfileAttributes took ${(mid - start).toFixed(2)} ms`
+    );
 
     // --- Restore Session ---
     const { idToken } = await authHandler.restoreSession();
     const end = performance.now();
     console.log(`[KYC] restoreSession took ${(end - mid).toFixed(2)} ms`);
-    console.log(`[KYC] Total KYC completion flow took ${(end - start).toFixed(2)} ms`);
+    console.log(
+      `[KYC] Total KYC completion flow took ${(end - start).toFixed(2)} ms`
+    );
 
     // --- Update local state ---
     auth.setTokenAndDecode(idToken);
@@ -58,7 +68,6 @@ async function completeKyc() {
     console.log("[UI] Button reset to 'Complete KYC'");
   }
 }
-
 </script>
 <script>
 export const assets = {

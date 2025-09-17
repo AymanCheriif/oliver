@@ -29,10 +29,25 @@
       },
       "KYC": {
         "title": "KYC",
-        "description": "Complete your KYC here (placeholder form).",
+        "description": "Please complete the identity verification process to continue",
         "button": "Complete KYC",
-        "error": "Failed to complete KYC"
+        "error": "An error occurred while completing KYC",
+        "status": {
+          "title": "KYC Status",
+          "description": "Your identity verification status",
+          "done": "DONE",
+          "pending": "PENDING"
+        }
       }
+    },
+    "confirmEmail": {
+      "title": "Confirm Email",
+      "description": "Verify your email address to continue",
+      "emailPlaceholder": "Enter your email",
+      "codePlaceholder": "Enter confirmation code",
+      "button": "Confirm",
+      "success": "Email confirmed successfully",
+      "error": "Failed to confirm email"
     },
     "form": {
       "email": "Email",

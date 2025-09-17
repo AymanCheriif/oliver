@@ -1,17 +1,8 @@
 <script setup>
-import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { i18nRuntimeState } from "@/main";
 
 const { t } = useI18n();
-
-const i18nReady = computed(() => i18nRuntimeState.ready);
-const mediaTitle = computed(() =>
-  t("dashboard.sections.myMedia.title", t("dashboard.actions.myMedia"))
-);
-const mediaDescription = computed(() =>
-  t("dashboard.myMedia.description", t("dashboard.actions.myMedia"))
-);
 </script>
 
 <script>
@@ -24,12 +15,20 @@ export const assets = {
 
 <template>
   <section class="dashboard-overview-creator">
-    <template v-if="i18nReady">
-      <h2>{{ mediaTitle }}</h2>
-      <p>{{ mediaDescription }}</p>
+    <template v-if="i18nRuntimeState.ready">
+      <h2>
+        {{
+          $t("dashboard.sections.myMedia.title", t("dashboard.actions.myMedia"))
+        }}
+      </h2>
+      <p>
+        {{
+          $t("dashboard.myMedia.description", t("dashboard.actions.myMedia"))
+        }}
+      </p>
     </template>
     <template v-else>
-      <p>{{ t("common.loading") }}</p>
+      <p>{{ $t("common.loading") }}</p>
     </template>
   </section>
 </template>

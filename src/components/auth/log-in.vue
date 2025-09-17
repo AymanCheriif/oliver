@@ -1,32 +1,32 @@
 <template>
   <div>
     <template v-if="i18nReady">
-      <h1>{{ welcomeText }}</h1>
+      <h1>{{ $t("auth.login.title") }}</h1>
       <form @submit.prevent="handleLogin" novalidate>
         <input
           v-model="email"
           type="email"
-          :placeholder="emailPlaceholder"
-          :aria-label="emailPlaceholder"
+          :placeholder="t('auth.login.emailPlaceholder')"
+          :aria-label="t('auth.login.emailPlaceholder')"
           autocomplete="email"
           required
         />
         <input
           v-model="password"
           type="password"
-          :placeholder="passwordPlaceholder"
-          :aria-label="passwordPlaceholder"
+          :placeholder="t('auth.login.passwordPlaceholder')"
+          :aria-label="t('auth.login.passwordPlaceholder')"
           autocomplete="current-password"
           required
         />
         <button type="submit" :disabled="isLoading">
-          {{ isLoading ? loadingText : loginButton }}
+          {{ isLoading ? $t("common.loading") : $t("auth.login.button") }}
         </button>
       </form>
-      <p v-if="errorKey" class="error">{{ t(errorKey) }}</p>
+      <p v-if="errorKey" class="error">{{ $t(errorKey) }}</p>
     </template>
     <template v-else>
-      <p>{{ loadingText }}</p>
+      <p>{{ $t("common.loading") }}</p>
     </template>
   </div>
 </template>
@@ -48,11 +48,6 @@ const isLoading = ref(false);
 const { t, locale } = useI18n();
 
 // Computed properties to force re-render when translations change
-const welcomeText = computed(() => t("auth.login.title"));
-const emailPlaceholder = computed(() => t("auth.login.emailPlaceholder"));
-const passwordPlaceholder = computed(() => t("auth.login.passwordPlaceholder"));
-const loginButton = computed(() => t("auth.login.button"));
-const loadingText = computed(() => t("common.loading"));
 const i18nReady = computed(() => i18nRuntimeState.ready);
 
 // Watch locale changes

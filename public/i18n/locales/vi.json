@@ -33,6 +33,15 @@
         "button": "Hoàn thành KYC"
       }
     },
+    "confirmEmail": {
+      "title": "Xác nhận email",
+      "description": "Xác minh địa chỉ email của bạn để tiếp tục.",
+      "emailPlaceholder": "Nhập địa chỉ email của bạn",
+      "codePlaceholder": "Nhập mã xác nhận",
+      "button": "Xác nhận",
+      "success": "Email đã được xác nhận thành công.",
+      "error": "Không thể xác minh email"
+    },
     "form": {
       "email": "Email",
       "password": "Mật khẩu",
