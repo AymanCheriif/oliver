@@ -150,22 +150,39 @@ export class DynamicModuleLoader implements ModuleLoader {
     section?: Section
   ): Promise<TranslationData> {
     try {
-      // Always load the full locale file for fallback
-      const filePath = `/src/i18n/locales/${locale}.json`;
-
-      const response = await fetch(filePath);
-
-      if (!response.ok) {
-        throw new Error(
-          `Failed to fetch fallback ${filePath}: ${response.status} ${response.statusText}`
-        );
+      // If section is specified, try to load that section's JSON directly
+      if (section) {
+        try {
+          const mod = await import(
+            /* @vite-ignore */ `@/i18n/sections/${section}/${locale}.json`
+          );
+          const flat = (mod as any).default || mod;
+          return { [section]: { ...flat } };
+        } catch (sectionError) {
+          // If section-specific fallback fails, continue to full locale fallback
+          console.warn(`[I18N] Section fallback failed for ${section}/${locale}, trying full locale`);
+        }
       }
 
-      const fullData = await response.json();
+      // Fallback: load all sections for this locale via glob
+      const glob = import.meta.glob("/src/i18n/sections/*/*.json");
+      const out: Record<string, any> = {};
+      await Promise.all(
+        Object.keys(glob)
+          .filter((p) => p.endsWith(`/${locale}.json`))
+          .map(async (p) => {
+            try {
+              const m = await glob[p]();
+              const sec = p.split("/i18n/sections/")[1].split("/")[0];
+              out[sec] = { ...((m as any).default || m) };
+            } catch (error) {
+              console.warn(`[I18N] Failed to load fallback section from ${p}:`, error);
+            }
+          })
+      );
 
       // Extract section data if section is specified
-      const data = section ? { [section]: fullData[section] } : fullData;
-
+      const data = section ? { [section]: out[section] } : out;
       return data;
     } catch (error) {
       throw new TranslationLoadError(

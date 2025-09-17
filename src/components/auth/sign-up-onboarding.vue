@@ -1,9 +1,20 @@
 <template>
   <div>
-    <h1 data-translate="auth.register.Onboarding.title">{{ $t('auth.register.Onboarding.title') }}</h1>
-    <p data-translate="auth.register.Onboarding.description">{{ $t('auth.register.Onboarding.description') }}</p>
-    <button @click="completeOnboarding" data-translate="auth.register.Onboarding.button">{{ $t('auth.register.Onboarding.button') }}</button>
-    <p v-if="error" data-translate="auth.messages.Onboarding.error">{{ error }}</p>
+    <h1 data-translate="auth.register.Onboarding.title">
+      {{ $t("auth.register.Onboarding.title") }}
+    </h1>
+    <p data-translate="auth.register.Onboarding.description">
+      {{ $t("auth.register.Onboarding.description") }}
+    </p>
+    <button
+      @click="completeOnboarding"
+      data-translate="auth.register.Onboarding.button"
+    >
+      {{ $t("auth.register.Onboarding.button") }}
+    </button>
+    <p v-if="error" data-translate="auth.messages.Onboarding.error">
+      {{ error }}
+    </p>
   </div>
 </template>
 
