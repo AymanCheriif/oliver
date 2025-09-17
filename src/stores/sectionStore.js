@@ -6,7 +6,7 @@ const appVersion = import.meta.env.VITE_APP_VERSION || "dev";
 export const useSectionsStore = defineStore("sections", {
   state: () => ({
     activated: {
-      auth: true, // Auth is always activated
+      auth: false, // Auth is always activated
       dashboard: false,
       profile: false,
       discover: false,
