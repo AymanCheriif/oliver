@@ -20,9 +20,10 @@ async function initializeApp() {
   pinia.use(piniaPluginPersistedstate);
   app.use(pinia);
 
-  // Initialize enterprise i18n system
+  // Initialize enterprise i18n store (this will also initialize the i18n system)
+  const i18nStore = useEnterpriseI18nStore();
   performance.mark("i18n-init-start");
-  await enterpriseI18n.initialize();
+  await i18nStore.initialize();
 
   // Preload current + fallback locales BEFORE mounting (eliminate fallback warnings)
   const initialLocale = enterpriseI18n.currentLocale;
@@ -37,7 +38,6 @@ async function initializeApp() {
 
   const auth = useAuthStore();
   const sectionsStore = useSectionsStore();
-  const i18nStore = useEnterpriseI18nStore();
 
   auth.refreshFromStorage();
   sectionsStore.hydrate();

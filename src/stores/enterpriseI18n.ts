@@ -25,7 +25,10 @@ export const useEnterpriseI18nStore = defineStore("enterpriseI18n", {
   state: () => ({
     // State is managed by I18nStateManager
     // This store provides reactive access to the state
+    currentLocale: enterpriseI18n.currentLocale,
   }),
+
+  persist: true,
 
   getters: {
     // Current locale
@@ -99,6 +102,8 @@ export const useEnterpriseI18nStore = defineStore("enterpriseI18n", {
         const success = await enterpriseI18n.setLocale(locale);
 
         if (success) {
+          // Update store state to persist the locale
+          this.currentLocale = locale;
           console.log(`[I18nStore] ✅ Locale set successfully: ${locale}`);
         } else {
           console.warn(`[I18nStore] ⚠️ Failed to set locale: ${locale}`);
@@ -361,13 +366,21 @@ export const useEnterpriseI18nStore = defineStore("enterpriseI18n", {
     // ============================================================================
 
     /**
-     * Initialize the store
+     * Initialize the store and sync with enterprise i18n system
      */
     async initialize(): Promise<void> {
       try {
         console.log("[I18nStore] Initializing enterprise i18n store...");
+
+        // Initialize the enterprise i18n system first (it handles localStorage correctly)
         await enterpriseI18n.initialize();
-        console.log("[I18nStore] ✅ Enterprise i18n store initialized");
+
+        // Sync our store state with the i18n system
+        this.currentLocale = enterpriseI18n.currentLocale;
+
+        console.log(
+          `[I18nStore] ✅ Enterprise i18n store initialized with locale: ${this.currentLocale}`
+        );
       } catch (error) {
         console.error("[I18nStore] Failed to initialize:", error);
         throw error;
