@@ -1,7 +1,7 @@
 [
   {
     "slug": "/",
-    "redirect": "/shop",
+    "redirect": "/log-in",
     "section": "auth",
     "preLoadSections": []
   },

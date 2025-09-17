@@ -7,7 +7,7 @@ export function lazy(section, importer) {
       const promises = [importer()];
 
       if (section) {
-        const registrarPath = `/i18n/sections/${section}/index.ts`;
+        const registrarPath = `/src/i18n/sections/${section}/index.ts`;
         const registrarLoader = i18nModules[registrarPath];
 
         if (registrarLoader) {
