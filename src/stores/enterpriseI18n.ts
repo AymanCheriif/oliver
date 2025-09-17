@@ -25,7 +25,7 @@ export const useEnterpriseI18nStore = defineStore("enterpriseI18n", {
   state: () => ({
     // State is managed by I18nStateManager
     // This store provides reactive access to the state
-    currentLocale: enterpriseI18n.currentLocale,
+    persistedLocale: enterpriseI18n.currentLocale,
   }),
 
   persist: true,
@@ -103,7 +103,7 @@ export const useEnterpriseI18nStore = defineStore("enterpriseI18n", {
 
         if (success) {
           // Update store state to persist the locale
-          this.currentLocale = locale;
+          this.persistedLocale = locale;
           console.log(`[I18nStore] ✅ Locale set successfully: ${locale}`);
         } else {
           console.warn(`[I18nStore] ⚠️ Failed to set locale: ${locale}`);
@@ -372,14 +372,25 @@ export const useEnterpriseI18nStore = defineStore("enterpriseI18n", {
       try {
         console.log("[I18nStore] Initializing enterprise i18n store...");
 
-        // Initialize the enterprise i18n system first (it handles localStorage correctly)
-        await enterpriseI18n.initialize();
+        // Check if we have a persisted locale
+        if (
+          this.persistedLocale &&
+          this.persistedLocale !== enterpriseI18n.currentLocale
+        ) {
+          console.log(
+            `[I18nStore] Restoring persisted locale: ${this.persistedLocale}`
+          );
+          await enterpriseI18n.setLocale(this.persistedLocale);
+        } else {
+          // Initialize the enterprise i18n system first (it handles localStorage correctly)
+          await enterpriseI18n.initialize();
+        }
 
         // Sync our store state with the i18n system
-        this.currentLocale = enterpriseI18n.currentLocale;
+        this.persistedLocale = enterpriseI18n.currentLocale;
 
         console.log(
-          `[I18nStore] ✅ Enterprise i18n store initialized with locale: ${this.currentLocale}`
+          `[I18nStore] ✅ Enterprise i18n store initialized with locale: ${this.persistedLocale}`
         );
       } catch (error) {
         console.error("[I18nStore] Failed to initialize:", error);
