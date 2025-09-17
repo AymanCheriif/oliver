@@ -38,7 +38,9 @@
           <option value="agent">{{ $t("auth.common.user") }}</option>
         </select>
         <button type="submit" :disabled="isLoading">
-          {{ isLoading ? $t("common.loading") : $t("auth.register.button") }}
+          {{
+            isLoading ? $t("auth.common.loading") : $t("auth.register.button")
+          }}
         </button>
       </form>
       <p v-if="errorKey" class="error">{{ $t(errorKey) }}</p>

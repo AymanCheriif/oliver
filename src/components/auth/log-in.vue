@@ -20,7 +20,7 @@
           required
         />
         <button type="submit" :disabled="isLoading">
-          {{ isLoading ? $t("common.loading") : $t("auth.login.button") }}
+          {{ isLoading ? $t("auth.common.loading") : $t("auth.login.button") }}
         </button>
       </form>
       <p v-if="errorKey" class="error">{{ $t(errorKey) }}</p>

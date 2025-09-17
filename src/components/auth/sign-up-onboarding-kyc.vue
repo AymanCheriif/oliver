@@ -7,7 +7,9 @@
       {{ $t("auth.register.KYC.description") }}
     </p>
     <button @click="completeKyc" data-translate="auth.register.KYC.button">
-      {{ isLoading ? $t("common.loading") : $t("auth.register.KYC.button") }}
+      {{
+        isLoading ? $t("auth.common.loading") : $t("auth.register.KYC.button")
+      }}
     </button>
     <p v-if="error" data-translate="auth.register.KYC.error">{{ error }}</p>
   </div>
