@@ -1,13 +1,17 @@
 <script setup>
-import { onMounted } from "vue";
-import { triggerTranslationForElements } from "@/utils/translationUtils";
+import { computed } from "vue";
+import { useI18n } from "vue-i18n";
+import { i18nRuntimeState } from "@/main";
 
-onMounted(() => {
-  // Trigger translation for elements with data-translate attribute
-  setTimeout(() => {
-    triggerTranslationForElements();
-  }, 100);
-});
+const { t } = useI18n();
+
+const i18nReady = computed(() => i18nRuntimeState.ready);
+const mediaTitle = computed(() =>
+  t("dashboard.sections.myMedia.title", t("dashboard.actions.myMedia"))
+);
+const mediaDescription = computed(() =>
+  t("dashboard.myMedia.description", t("dashboard.actions.myMedia"))
+);
 </script>
 
 <script>
@@ -20,13 +24,13 @@ export const assets = {
 
 <template>
   <section class="dashboard-overview-creator">
-    <h2 data-translate="dashboard.sections.myMedia.title">{{ $t('dashboard.sections.myMedia.title') }}</h2>
-    <p data-translate="dashboard.sections.myMedia.description">{{ $t('dashboard.sections.myMedia.description') }}</p>
-    <!-- <img
-      src="/images/image.jpg"
-      alt="Media Image"
-      style="width: 100%; height: auto"
-    /> -->
+    <template v-if="i18nReady">
+      <h2>{{ mediaTitle }}</h2>
+      <p>{{ mediaDescription }}</p>
+    </template>
+    <template v-else>
+      <p>{{ t("common.loading") }}</p>
+    </template>
   </section>
 </template>
 

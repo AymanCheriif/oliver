@@ -6,13 +6,6 @@
     "preLoadSections": []
   },
   {
-    "slug": "/test-translation",
-    "section": "misc",
-    "requiresAuth": false,
-    "componentPath": "@/components/TestTranslation.vue",
-    "preLoadSections": []
-  },
-  {
     "slug": "/log-in",
     "section": "auth",
     "requiresAuth": false,

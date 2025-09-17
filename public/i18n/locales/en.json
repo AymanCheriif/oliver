@@ -63,7 +63,8 @@
     "common": {
       "user": "User",
       "admin": "Admin",
-      "guest": "Guest"
+      "guest": "Guest",
+      "logout": "Logout"
     }
   },
   "dashboard": {
@@ -85,7 +86,22 @@
       "contact": "Contact Information",
       "about": "About",
       "services": "Services",
-      "settings": "Settings"
+      "settings": "Settings",
+      "editProfile": {
+        "title": "Edit Profile",
+        "description": "Update your personal information"
+      },
+      "editSettings": {
+        "title": "Account Settings",
+        "description": "Manage your account preferences"
+      },
+      "myMedia": {
+        "title": "My Media",
+        "description": "Manage your uploaded content"
+      }
+    },
+    "sectionsDescriptions": {
+      "myMedia": "Manage and view your uploaded media items"
     },
     "actions": {
       "viewAll": "View All",
@@ -94,7 +110,10 @@
       "settings": "Settings",
       "export": "Export Data",
       "import": "Import Data",
-      "save": "Save"
+      "save": "Save",
+      "editProfile": "Edit Profile",
+      "editSettings": "Edit Settings",
+      "myMedia": "My Media"
     },
     "form": {
       "transferAmount": "Transfer Amount",
@@ -113,6 +132,10 @@
       "loading": "Loading dashboard...",
       "error": "Failed to load dashboard data",
       "success": "Dashboard updated successfully"
+    },
+    "agentDashboard": {
+      "title": "Agent Dashboard Overview",
+      "description": "Overview of your agent activities"
     }
   },
   "shop": {
