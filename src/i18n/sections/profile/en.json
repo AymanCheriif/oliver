@@ -1,0 +1,18 @@
+{
+  "page": {
+    "title": "Profile",
+    "description": "Manage your profile information"
+  },
+  "form": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "bio": "Biography",
+    "save": "Save Changes"
+  },
+  "messages": {
+    "updated": "Profile updated successfully",
+    "error": "Failed to update profile"
+  }
+}

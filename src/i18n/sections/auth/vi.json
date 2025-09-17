@@ -1,0 +1,47 @@
+{
+  "login": {
+    "title": "Chào mừng trở lại",
+    "button": "Đăng nhập",
+    "emailPlaceholder": "Nhập email của bạn",
+    "passwordPlaceholder": "Nhập mật khẩu của bạn",
+    "welcome": "Xin chào, {0}!",
+    "error": "Thông tin đăng nhập không hợp lệ"
+  },
+  "register": {
+    "title": "Tạo tài khoản",
+    "button": "Đăng ký",
+    "firstName": "Tên",
+    "emailPlaceholder": "Nhập email của bạn",
+    "passwordPlaceholder": "Nhập mật khẩu của bạn",
+    "success": "Tạo tài khoản thành công",
+    "Onboarding": {
+      "title": "Hoàn thiện hồ sơ",
+      "description": "Vui lòng hoàn thiện thông tin hồ sơ của bạn",
+      "button": "Hoàn thành"
+    },
+    "KYC": {
+      "title": "Xác minh danh tính",
+      "description": "Vui lòng hoàn thành quy trình xác minh danh tính để tiếp tục",
+      "button": "Hoàn thành KYC",
+      "error": "Có lỗi xảy ra khi hoàn thành KYC",
+      "status": {
+        "title": "Trạng thái KYC",
+        "description": "Trạng thái xác minh danh tính của bạn",
+        "done": "HOÀN THÀNH",
+        "pending": "CHỜ XỬ LÝ"
+      }
+    }
+  },
+  "common": {
+    "logout": "Đăng xuất",
+    "loading": "Đang tải...",
+    "user": "Người dùng",
+    "admin": "Quản trị viên",
+    "guest": "Khách"
+  },
+  "messages": {
+    "Onboarding": {
+      "error": "Có lỗi xảy ra khi hoàn thiện hồ sơ"
+    }
+  }
+}

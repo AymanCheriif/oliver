@@ -1,0 +1,12 @@
+{
+  "page": {
+    "title": "Shop",
+    "description": "Browse and purchase products"
+  },
+  "sections": {
+    "products": "Products"
+  },
+  "messages": {
+    "comingSoon": "More products coming soon!"
+  }
+}

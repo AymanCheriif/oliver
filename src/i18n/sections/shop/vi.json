@@ -1,0 +1,12 @@
+{
+  "page": {
+    "title": "Cửa hàng",
+    "description": "Duyệt và mua sản phẩm"
+  },
+  "sections": {
+    "products": "Sản phẩm"
+  },
+  "messages": {
+    "comingSoon": "Sẽ có thêm sản phẩm sớm!"
+  }
+}

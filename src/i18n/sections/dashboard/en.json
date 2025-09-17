@@ -1,0 +1,30 @@
+{
+  "page": {
+    "title": "Dashboard",
+    "description": "Overview of your account"
+  },
+  "actions": {
+    "editProfile": "Edit Profile",
+    "editSettings": "Edit Settings",
+    "myMedia": "My Media",
+    "viewStats": "View Statistics"
+  },
+  "sections": {
+    "editProfile": {
+      "title": "Edit Profile",
+      "description": "Update your personal information"
+    },
+    "editSettings": {
+      "title": "Account Settings",
+      "description": "Manage your account preferences"
+    },
+    "myMedia": {
+      "title": "My Media",
+      "description": "Manage your uploaded content"
+    }
+  },
+  "messages": {
+    "welcome": "Welcome back, {0}!",
+    "stats": "You have {0} items"
+  }
+}

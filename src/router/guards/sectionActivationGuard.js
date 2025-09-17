@@ -1,5 +1,5 @@
 // router/guard/sectionActivationGuard.js
-import { lazy } from "@/utils/lazy";
+import { lazy, createImporter } from "@/utils/lazy";
 import { preloadAsset, preloadAssets } from "@/utils/sectionActivator";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useSectionsStore } from "@/stores/sectionStore";
@@ -79,7 +79,7 @@ export function installSectionActivationGuard(router) {
         `[COMPONENT] Loading component for route "${route.slug}" in section "${section}": ${compPath}`
       );
       try {
-        const mod = await lazy(compPath)();
+        const mod = await lazy(section, createImporter(compPath))();
         console.log(`[COMPONENT] Loaded component for "${route.slug}"`);
         const assets = normalizeAssets(mod);
         [...assets.critical, ...assets.high, ...assets.normal].forEach((url) =>
@@ -137,7 +137,7 @@ export function installSectionActivationGuard(router) {
       console.log(
         `[COMPONENT] Loading current component for "${slug}": ${compPath}`
       );
-      compModule = await lazy(compPath)();
+      compModule = await lazy(section, createImporter(compPath))();
       console.log(`[COMPONENT] Loaded current component for "${slug}"`);
       console.log(`[TEMPLATE] Vue template ready for "${slug}"`);
     } catch (e) {

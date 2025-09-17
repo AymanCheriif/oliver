@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import routesJson from "@/router/routeConfig.json";
-import { lazy } from "@/utils/lazy";
+import { lazy, legacyLazy, createImporter } from "@/utils/lazy";
 import { installSectionActivationGuard } from "./guards/sectionActivationGuard";
 import routeGuard from "./routeGuard";
 import { useAuthStore } from "@/stores/useAuthStore";
@@ -34,8 +34,8 @@ function toRouteRecord(r) {
         r._cachedCompPath = compPath || "@/components/NotFound.vue";
       }
       const component = compPath
-        ? await lazy(compPath)()
-        : await import("@/components/NotFound.vue");
+        ? await lazy(r.section, createImporter(compPath))()
+        : await legacyLazy("@/components/NotFound.vue")();
       componentCache.set(cacheKey, component);
       return component;
     };
@@ -46,8 +46,8 @@ function toRouteRecord(r) {
         return componentCache.get(cacheKey);
       }
       const component = r.componentPath
-        ? await lazy(r.componentPath)()
-        : await import("@/components/NotFound.vue");
+        ? await lazy(r.section, createImporter(r.componentPath))()
+        : await legacyLazy("@/components/NotFound.vue")();
       componentCache.set(cacheKey, component);
       return component;
     };

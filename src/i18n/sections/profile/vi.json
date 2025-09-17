@@ -1,0 +1,18 @@
+{
+  "page": {
+    "title": "Hồ sơ",
+    "description": "Quản lý thông tin hồ sơ"
+  },
+  "form": {
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "email": "Địa chỉ email",
+    "phone": "Số điện thoại",
+    "bio": "Tiểu sử",
+    "save": "Lưu thay đổi"
+  },
+  "messages": {
+    "updated": "Cập nhật hồ sơ thành công",
+    "error": "Không thể cập nhật hồ sơ"
+  }
+}

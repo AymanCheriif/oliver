@@ -86,32 +86,35 @@ export class DynamicModuleLoader implements ModuleLoader {
     const startTime = performance.now();
 
     try {
-      // Always load the full locale file, then extract section if needed
-      const filePath = `/i18n/locales/${locale}.json`;
-
-      const response = await fetch(filePath);
-
-      if (!response.ok) {
-        throw new Error(
-          `Failed to fetch ${filePath}: ${response.status} ${response.statusText}`
+      // If called with a section, import only that section's flat JSON
+      if (section) {
+        const mod = await import(
+          /* @vite-ignore */ `@/i18n/sections/${section}/${locale}.json`
         );
+        const flat = (mod as any).default || mod;
+        const data = { [section]: { ...flat } };
+
+        // Cache the result
+        this.cacheManager.setSectionCache(locale, section, data);
+        return data;
       }
 
-      const fullData = await response.json();
-
-      const loadTime = performance.now() - startTime;
-
-      // Extract section data if section is specified
-      const data = section ? { [section]: fullData[section] } : fullData;
+      // Rare fallback: load all sections for this locale via glob
+      const glob = import.meta.glob("/src/i18n/sections/*/*.json");
+      const out: Record<string, any> = {};
+      await Promise.all(
+        Object.keys(glob)
+          .filter((p) => p.endsWith(`/${locale}.json`))
+          .map(async (p) => {
+            const m = await glob[p]();
+            const sec = p.split("/i18n/sections/")[1].split("/")[0];
+            out[sec] = { ...((m as any).default || m) };
+          })
+      );
 
       // Cache the result
-      if (section) {
-        this.cacheManager.setSectionCache(locale, section, data);
-      } else {
-        this.cacheManager.setLocaleCache(locale, data);
-      }
-
-      return data;
+      this.cacheManager.setLocaleCache(locale, out);
+      return out;
     } catch (error) {
       const loadTime = performance.now() - startTime;
 

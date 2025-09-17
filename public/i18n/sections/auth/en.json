@@ -1,0 +1,47 @@
+{
+  "login": {
+    "title": "Welcome Back",
+    "button": "Sign In",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "welcome": "Hello, {0}!",
+    "error": "Invalid credentials"
+  },
+  "register": {
+    "title": "Create Account",
+    "button": "Sign Up",
+    "firstName": "First Name",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "success": "Account created successfully",
+    "Onboarding": {
+      "title": "Complete Your Profile",
+      "description": "Please complete your profile information",
+      "button": "Complete"
+    },
+    "KYC": {
+      "title": "Identity Verification",
+      "description": "Please complete the identity verification process to continue",
+      "button": "Complete KYC",
+      "error": "An error occurred while completing KYC",
+      "status": {
+        "title": "KYC Status",
+        "description": "Your identity verification status",
+        "done": "DONE",
+        "pending": "PENDING"
+      }
+    }
+  },
+  "common": {
+    "logout": "Sign Out",
+    "loading": "Loading...",
+    "user": "User",
+    "admin": "Admin",
+    "guest": "Guest"
+  },
+  "messages": {
+    "Onboarding": {
+      "error": "An error occurred while completing your profile"
+    }
+  }
+}

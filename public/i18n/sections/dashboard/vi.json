@@ -1,0 +1,30 @@
+{
+  "page": {
+    "title": "Bảng điều khiển",
+    "description": "Tổng quan tài khoản của bạn"
+  },
+  "actions": {
+    "editProfile": "Sửa hồ sơ",
+    "editSettings": "Sửa cài đặt",
+    "myMedia": "Media của tôi",
+    "viewStats": "Xem thống kê"
+  },
+  "sections": {
+    "editProfile": {
+      "title": "Sửa hồ sơ",
+      "description": "Cập nhật thông tin cá nhân"
+    },
+    "editSettings": {
+      "title": "Cài đặt tài khoản",
+      "description": "Quản lý tùy chọn tài khoản"
+    },
+    "myMedia": {
+      "title": "Media của tôi",
+      "description": "Quản lý nội dung đã tải lên"
+    }
+  },
+  "messages": {
+    "welcome": "Chào mừng trở lại, {0}!",
+    "stats": "Bạn có {0} mục"
+  }
+}

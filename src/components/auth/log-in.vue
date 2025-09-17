@@ -6,16 +6,16 @@
         <input
           v-model="email"
           type="email"
-          :placeholder="t('auth.login.emailPlaceholder')"
-          :aria-label="t('auth.login.emailPlaceholder')"
+          :placeholder="$t('auth.login.emailPlaceholder')"
+          :aria-label="$t('auth.login.emailPlaceholder')"
           autocomplete="email"
           required
         />
         <input
           v-model="password"
           type="password"
-          :placeholder="t('auth.login.passwordPlaceholder')"
-          :aria-label="t('auth.login.passwordPlaceholder')"
+          :placeholder="$t('auth.login.passwordPlaceholder')"
+          :aria-label="$t('auth.login.passwordPlaceholder')"
           autocomplete="current-password"
           required
         />
