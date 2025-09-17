@@ -4,6 +4,10 @@ import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import App from "./App.vue";
 import router from "./router";
 import { enterpriseI18n } from "./i18n/enterprise/i18n";
+import { reactive } from "vue";
+
+// Global i18n readiness state
+export const i18nRuntimeState = reactive({ ready: false });
 import { useEnterpriseI18nStore } from "./stores/enterpriseI18n";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { authHandler } from "@/services/authHandler";
@@ -17,7 +21,19 @@ async function initializeApp() {
   app.use(pinia);
 
   // Initialize enterprise i18n system
+  performance.mark("i18n-init-start");
   await enterpriseI18n.initialize();
+
+  // Preload current + fallback locales BEFORE mounting (eliminate fallback warnings)
+  const initialLocale = enterpriseI18n.currentLocale;
+  const fallbackLocale = "en";
+  if (initialLocale !== fallbackLocale) {
+    await enterpriseI18n.preloadLocale(fallbackLocale);
+  }
+  await enterpriseI18n.preloadLocale(initialLocale);
+  i18nRuntimeState.ready = true;
+  performance.mark("i18n-ready");
+  performance.measure("i18n-initialize", "i18n-init-start", "i18n-ready");
 
   const auth = useAuthStore();
   const sectionsStore = useSectionsStore();

@@ -7,12 +7,20 @@
     "login": {
       "title": "Login to Your Account",
       "button": "Login",
-      "description": "Sign in to your account"
+      "description": "Sign in to your account",
+      "error": "Invalid credentials",
+      "emailPlaceholder": "Enter your email",
+      "passwordPlaceholder": "Enter your password",
+      "welcome": "Hello, {0}!"
     },
     "register": {
       "title": "Create Account",
       "button": "Register",
       "description": "Create a new account",
+      "firstName": "First Name",
+      "emailPlaceholder": "Enter your email",
+      "passwordPlaceholder": "Enter your password",
+      "success": "Account created successfully",
       "Onboarding": {
         "title": "Onboarding",
         "description": "Complete your onboarding here (placeholder form).",
@@ -287,5 +295,21 @@
       "title": "i18n Test App",
       "home": "Home"
     }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Operation completed",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update",
+    "submit": "Submit",
+    "reset": "Reset",
+    "back": "Go Back",
+    "next": "Next",
+    "previous": "Previous"
   }
 }

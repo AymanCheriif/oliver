@@ -7,12 +7,20 @@
     "login": {
       "title": "Đăng nhập vào tài khoản của bạn",
       "button": "Đăng nhập",
-      "description": "Đăng nhập vào tài khoản của bạn"
+      "description": "Đăng nhập vào tài khoản của bạn",
+      "emailPlaceholder": "Nhập email của bạn",
+      "passwordPlaceholder": "Nhập mật khẩu của bạn",
+      "welcome": "Xin chào, {0}!",
+      "error": "Thông tin đăng nhập không hợp lệ"
     },
     "register": {
       "title": "Tạo tài khoản",
       "button": "Đăng ký",
       "description": "Tạo tài khoản mới",
+      "firstName": "Tên",
+      "emailPlaceholder": "Nhập email của bạn",
+      "passwordPlaceholder": "Nhập mật khẩu của bạn",
+      "success": "Tạo tài khoản thành công",
       "Onboarding": {
         "title": "Bắt đầu đăng ký",
         "description": "Hoàn thành đăng ký ở đây (form mẫu).",
@@ -286,5 +294,21 @@
       "title": "Ứng dụng Test i18n",
       "home": "Trang chủ"
     }
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "success": "Thao tác hoàn thành",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "create": "Tạo",
+    "update": "Cập nhật",
+    "submit": "Gửi",
+    "reset": "Đặt lại",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "previous": "Trước đó"
   }
 }

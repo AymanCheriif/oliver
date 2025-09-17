@@ -50,17 +50,23 @@ export function installSectionActivationGuard(router) {
         .join(", ")}`
     );
     const allAssets = new Set();
-    
-    // Preload translations for this section
-    console.log(`[I18N] Preloading translations for section "${section}"`);
-    try {
-      await enterpriseI18n.preloadLocale('vi', section);
-      await enterpriseI18n.preloadLocale('en', section);
-      console.log(`[I18N] Translations preloaded for section "${section}"`);
-    } catch (error) {
-      console.warn(`[I18N] Failed to preload translations for section "${section}":`, error);
+
+    // Ensure required locales are loaded once (full locale, not per-section)
+    console.log(`[I18N] Ensuring locales for section "${section}"`);
+    const neededLocales = ["vi", "en"];
+    for (const loc of neededLocales) {
+      try {
+        await enterpriseI18n.preloadLocale(loc);
+        // Log only when first loaded (enterpriseI18n.preloadLocale logs cache hits itself in dev)
+      } catch (error) {
+        console.warn(
+          `[I18N] Failed ensuring locale '${loc}' for section "${section}":`,
+          error
+        );
+      }
     }
-    
+    console.log(`[I18N] Locales ensured for section "${section}"`);
+
     const componentPromises = sectionRoutes.map(async (route) => {
       const compPath = getCompPath(route, role);
       if (!compPath) {
@@ -222,9 +228,7 @@ export function installSectionActivationGuard(router) {
       for (const preSection of preLoadSections) {
         if (preSection === "dashboard" && !authStore.currentUser) {
           console.log(
-            `♻️ Skipping preload for "${toFriendlyName(
-              preSection
-            )}" (no user)`
+            `♻️ Skipping preload for "${toFriendlyName(preSection)}" (no user)`
           );
           continue;
         }

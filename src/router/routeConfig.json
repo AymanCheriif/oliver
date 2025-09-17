@@ -1,7 +1,7 @@
 [
   {
     "slug": "/",
-    "redirect": "/login-in",
+    "redirect": "/log-in",
     "section": "auth",
     "preLoadSections": []
   },
@@ -489,7 +489,7 @@
   },
   {
     "slug": "/shop",
-    "requiresAuth": false,
+    "requiresAuth": true,
     "section": "shop",
     "supportedRoles": ["all"],
     "redirectIfNotAuth": "/log-in",
