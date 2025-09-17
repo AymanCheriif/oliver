@@ -209,7 +209,7 @@
       }
     }
   },
-    {
+  {
     "slug": "/dashboard/edit-settings",
     "section": "dashboard",
     "inheritConfigFromParent": true,
@@ -489,7 +489,7 @@
   },
   {
     "slug": "/shop",
-    "requiresAuth": true,
+    "requiresAuth": false,
     "section": "shop",
     "supportedRoles": ["all"],
     "redirectIfNotAuth": "/log-in",
